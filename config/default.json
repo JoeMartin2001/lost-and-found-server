@@ -1,5 +1,0 @@
-{
-  "jwtPrivateKey": "serdarchik@00!",
-  "port": 4000,
-  "mongoURI": "mongodb+srv://dbSardorbek:yuksalish246@lostandfoundcluster.tckld.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-}
