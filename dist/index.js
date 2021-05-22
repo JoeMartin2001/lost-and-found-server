@@ -26,7 +26,7 @@ socket_1.useSocket(io);
 middlewares_1.default(app);
 function start() {
     return __awaiter(this, void 0, void 0, function* () {
-        const PORT = process.env.PORT || 4000;
+        const PORT = process.env.PORT || config_1.default.get("port") || 3000;
         const mongoURI = config_1.default.get("mongoURI");
         try {
             yield mongoose_1.default.connect(mongoURI, {
