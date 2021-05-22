@@ -16,7 +16,7 @@ useSocket(io);
 useMiddlewares(app);
 
 async function start() {
-  const PORT = process.env.PORT || "4000";
+  const PORT = config.get("port") || 3000;
 
   const mongoURI: string = config.get("mongoURI");
 
