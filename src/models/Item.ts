@@ -16,6 +16,10 @@ const ItemSchema = new mongoose.Schema<ItemType>({
     type: String,
     required: true,
   },
+  phone: {
+    type: String,
+    required: true,
+  },
   region: {
     type: String,
     required: true,

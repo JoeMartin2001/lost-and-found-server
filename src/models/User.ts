@@ -17,10 +17,6 @@ const UserSchema = new Schema<UserType>({
     type: String,
     required: true,
   },
-  phone: {
-    type: Number,
-    required: true,
-  },
   username: {
     type: String,
     required: true,
@@ -35,7 +31,6 @@ export const validateUser = (body: any) => {
   const joiSchema = Joi.object({
     email: string().min(3).required().email(),
     fullName: string().min(3).required(),
-    phone: number().min(3).required(),
     username: string().min(3).required(),
     password: string().min(3).required(),
   });
