@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
     "dev": "nodemon src/index.ts",
     "build": "tsc -p ."
   },
@@ -21,6 +21,7 @@
     "@types/morgan": "^1.9.2",
     "config": "^3.3.6",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",

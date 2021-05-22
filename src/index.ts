@@ -18,14 +18,10 @@ useMiddlewares(app);
 async function start() {
   const PORT = process.env.PORT || 4000;
 
-  const dbPwd = config.get("dbPassword");
-  const dbUser = config.get("dbUser");
-
-  // const dbUrl = "mongodb://localhost:27017/lost-and-found";
-  const dbUrl = `mongodb+srv://${dbUser}:${dbPwd}@lostandfoundcluster.tckld.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+  const mongoURI: string = config.get("mongoURI");
 
   try {
-    await mongoose.connect(dbUrl, {
+    await mongoose.connect(mongoURI, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });

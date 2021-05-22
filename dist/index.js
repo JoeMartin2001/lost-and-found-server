@@ -27,12 +27,9 @@ middlewares_1.default(app);
 function start() {
     return __awaiter(this, void 0, void 0, function* () {
         const PORT = process.env.PORT || 4000;
-        const dbPwd = config_1.default.get("dbPassword");
-        const dbUser = config_1.default.get("dbUser");
-        // const dbUrl = "mongodb://localhost:27017/lost-and-found";
-        const dbUrl = `mongodb+srv://${dbUser}:${dbPwd}@lostandfoundcluster.tckld.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+        const mongoURI = config_1.default.get("mongoURI");
         try {
-            yield mongoose_1.default.connect(dbUrl, {
+            yield mongoose_1.default.connect(mongoURI, {
                 useUnifiedTopology: true,
                 useNewUrlParser: true,
             });
