@@ -1,3 +1,5 @@
 {
-  "jwtPrivateKey": "serdarchik@00!"
+  "jwtPrivateKey": "jwtPrivateKey",
+  "PORT": "PORT",
+  "mongoURI": "mongoURI"
 }
