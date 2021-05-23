@@ -16,9 +16,9 @@ useSocket(io);
 useMiddlewares(app);
 
 async function start() {
-  const PORT = process.env.PORT || config.get("port") || 3000;
-
+  const PORT = process.env.PORT || 4000;
   const mongoURI: string = config.get("mongoURI");
+  // const mongoURI: string = "mongodb://localhost:27017/lost-and-found";
 
   try {
     await mongoose.connect(mongoURI, {

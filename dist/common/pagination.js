@@ -38,6 +38,7 @@ function usePagination(model, population, populators) {
         try {
             const query = yield model
                 .find({ region, case: cs })
+                .sort({ date: -1 })
                 .populate(population, populators)
                 .limit(limit)
                 .skip(startIndex)

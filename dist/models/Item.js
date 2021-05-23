@@ -14,6 +14,10 @@ const ItemSchema = new mongoose_1.default.Schema({
         type: String,
         required: true,
     },
+    phone: {
+        type: String,
+        required: true,
+    },
     region: {
         type: String,
         required: true,

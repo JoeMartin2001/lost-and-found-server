@@ -41,6 +41,7 @@ export function usePagination(
     try {
       const query = await model
         .find({ region, case: cs })
+        .sort({ date: -1 })
         .populate(population, populators)
         .limit(limit)
         .skip(startIndex)
