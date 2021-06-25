@@ -15,7 +15,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
   const { error } = validateUser(req.body);
 
-  if (error) res.status(409).send({ msg: error.details[0].message });
+  if (error) return res.status(409).send({ msg: error.details[0].message });
 
   const user = new User(req.body);
 

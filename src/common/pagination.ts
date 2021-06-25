@@ -8,49 +8,47 @@ export function usePagination(
   population?: String,
   populators?: Object
 ) {
-  return async (req: any, res: any, next: NextFunction) => {
-    // const totalPages = await model.countDocuments();
+  return async (req: any, res: any, next: any) => {
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
-    const region = req.query?.region;
-    const caseType = req.query.case;
+
+    const region = req.query.region;
+    const itemCase = req.query.case;
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
-    const results: any = {};
-
-    if (endIndex < (await model.countDocuments().exec())) {
-      results.next = {
-        page: page + 1,
-        limit: limit,
-      };
-    }
-
-    if (startIndex > 0) {
-      results.previous = {
-        page: page - 1,
-        limit: limit,
-      };
-    }
-
-    results.limit = limit;
-
-    const cs = caseType === "All" ? { $in: ["Lost", "Found"] } : caseType;
+    const results: {
+      next?: { page: number; limit: number };
+      previous?: { page: number; limit: number };
+      results?: any;
+    } = {};
 
     try {
-      const query = await model
-        .find({ region, case: cs })
-        .sort({ date: -1 })
-        .populate(population, populators)
+      const itemCount = await model.find({ region, case: itemCase });
+
+      const queriedResults = await model
+        .find({ region, case: itemCase })
         .limit(limit)
         .skip(startIndex)
+        .sort({ date: -1 })
         .exec();
 
-      const totalPages = await model.countDocuments({ region, case: cs });
+      if (endIndex < itemCount.length) {
+        results.next = {
+          page: page + 1,
+          limit: limit,
+        };
+      }
 
-      results.totalPages = totalPages;
-      results.results = query;
+      if (startIndex > 0) {
+        results.previous = {
+          page: page - 1,
+          limit: limit,
+        };
+      }
+
+      results.results = queriedResults;
       res.paginatedResults = results;
       next();
     } catch (e) {

@@ -8,6 +8,7 @@ const useMiddlewares = (app: Application) => {
   app.use(json());
   app.use(urlencoded({ extended: true }));
   app.use(cors());
+  app.use(morgan("dev"));
   process.env.NODE_ENV === "production" && app.use(morgan("dev"));
 
   app.get("/", (req: any, res: any) => res.send("Home"));

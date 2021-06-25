@@ -25,6 +25,13 @@ const UserSchema = new Schema<UserType>({
     type: String,
     required: true,
   },
+  chats: {
+    type: Array,
+    chat: {
+      type: Schema.Types.ObjectId,
+      ref: "Chat",
+    },
+  },
 });
 
 export const validateUser = (body: any) => {

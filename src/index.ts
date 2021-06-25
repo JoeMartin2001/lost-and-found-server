@@ -16,9 +16,11 @@ useSocket(io);
 useMiddlewares(app);
 
 async function start() {
-  const PORT = process.env.PORT || 4000;
-  const mongoURI: string = config.get("mongoURI");
-  // const mongoURI: string = "mongodb://localhost:27017/lost-and-found";
+  // const PORT = process.env.PORT || config.get("PORT") || 3000;
+  // const mongoURI: string = config.get("mongoURI");
+
+  const PORT = 4000;
+  const mongoURI: string = "mongodb://localhost:27017/lost-and-found";
 
   try {
     await mongoose.connect(mongoURI, {
@@ -26,7 +28,9 @@ async function start() {
       useNewUrlParser: true,
     });
     console.log("Connected to mongoDB database!");
-    httpServer.listen(PORT, () => console.log(`Listening to port ${PORT}!`));
+    httpServer.listen(PORT, "192.168.1.188", () =>
+      console.log(`Listening to port ${PORT}!`)
+    );
   } catch (error) {
     console.log("Error to launch the application! Error: " + error);
     process.exit(1);

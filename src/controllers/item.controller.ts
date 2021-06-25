@@ -20,16 +20,10 @@ export const getItemById = (req: Request, res: Response) => {
     .populate("user")
     .exec((err: Error, item: ItemType) => {
       if (err) throw new Error(err.message);
-      console.log(item);
       res.status(200).json(item);
     });
 };
 
 /* GET ALL ITEMS START */
-export const getAllItems = (req: Request, res: any) => {
-  // Item.find({}, (err: Error, items: ItemType[]) => {
-  //   if (err) throw new Error(err.message);
-  //   res.status(200).json(items);
-  // });
+export const getAllItems = (req: Request, res: any) =>
   res.json(res.paginatedResults);
-};
